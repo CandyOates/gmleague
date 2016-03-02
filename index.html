@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+		<title>GM League Auction</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp">
+	<div class='main' ng-controller='MainController'>
+		<input type='text' ng-model='user.txt'>Username</input>
+		<div id="bidbuttons" ng-repeat='bid in bids'>
+			<button class='bid' ng-click='make_bid(bid.years, user.txt)'>{{bid.years}} Year: {{bid.price | currency}}</button>
+		</div>
+		<div id="auctiontable">
+			<table>
+				<thead>
+						<th>Bidder</th>
+						<th>Years</th>
+						<th>Total</th>
+						<th>Annual</th>
+				</thead>
+				<tbody ng-repeat='hist in history'>
+					<tr>
+						<td>{{hist.User}}</td>
+						<td>{{hist.Years}}</td>
+						<td>{{hist.Price | currency}}</td>
+						<td>{{hist.Avg | currency}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class='reset_button'>
+			<button id='reset' ng-click='reset()'>Reset Auction</button>
+		</div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script src='js/controllers/MainController.js'></script>
+	</body>
+</html>
