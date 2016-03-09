@@ -1,0 +1,9 @@
+<h1>Create New League</h1>
+<form id='newleagueform' name='myForm'>
+	<label>League Name</label>
+	<input ng-model='lgname' type='text' min='6' placeholder='My GM League' required/>
+
+	<label>Number of Teams</label>
+	<input ng-model='nteams' type='number' min='2' max='16' placeholder='10' required/>
+</form>
+<button ng-click='submit()'>Make League</button>

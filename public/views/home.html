@@ -1,0 +1,20 @@
+<h1>Home Page</h1>
+<div class='not_auth' ng-show='!authorized'>
+	<form name='login'>
+		<label>Email:</label><input type='email' name='email' ng-model='email' required/>
+		<label>Password:</label><input type='password' name='password' ng-model='password' required/>
+	</form>
+
+	<button ng-click='signin()'>Sign In</button>
+	<button ng-click='register()'>Register</button>
+</div>
+
+<div class='is_auth' ng-show='authorized'>
+	{{authData.password.email}}
+	<a href='#/newleague' id='newleaguelink'>Create League</a>
+	<ul id='leaguelist'>
+		<li class='leaguelinks' ng-repeat='league in leagues'>
+			<a class='leaguelink' href='/#/league/{{league.uid}}'>{{league.settings.name}}</a>
+		</li>
+	</ul>
+</div>

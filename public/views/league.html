@@ -1,0 +1,10 @@
+<h1>League Home: {{leaguesettings.name}}</h1>
+<a href='#/league/{{leagueid}}/players'>Players</a>
+<a href='#/league/{{leagueid}}/auction'>Auction</a>
+<a href='#/league/{{leagueid}}/draft'>Draft</a>
+
+<ol id='leagueteamslist'>
+	<li id='leagueteam' ng-repeat='team in teams'>
+		<a href='#/league/{{leagueid}}/team/{{team.userid}}' id='leagueteamlink'>{{team.name}}</a>
+	</li>
+</ol>

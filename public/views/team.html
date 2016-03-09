@@ -1,0 +1,40 @@
+<h1>Team Page: {{leaguesettings.name}}: {{team.name}}</h1>
+<a href='#/league/{{leagueid}}'>League Home</a>
+
+<!--Search: <input type='text' ng-model='filters.name'></input>
+Position: <select ng-model='filters.pos'>
+<option value=''>all</option>
+<option value='QB'>QB</option>
+<option value='RB'>RB</option>
+<option value='WR'>WR</option>
+<option value='TE'>TE</option>
+<option value='K'>K</option>
+<option value='DEF'>DEF</option>
+</select>
+
+<table>
+	<thead>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "name"; sortReverse = !sortReverse;'>Name</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "pos"; sortReverse = !sortReverse;'>Position</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "pid"; sortReverse = !sortReverse;'>Player ID</a>
+		</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat='player in players | orderBy:sortType:sortReverse | filter:filters' id='playerrow'>
+			<td id='playernametd'>
+				<a href='#/leagues/{{leagueid}}/players/{{player.pid}}'>{{player.name}}</a>
+			</td>
+			<td id='playerpostd'>
+				{{player.pos}}
+			</td>
+			<td id='playeridtd'>
+				<a href='{{player.pfrlink}}'>{{player.pid}}</a>
+			</td>
+		</tr>
+	</tbody>
+</table>-->

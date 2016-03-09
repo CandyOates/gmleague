@@ -1,0 +1,82 @@
+<h1>Draft</h1>
+<a href='#/league/{{leagueid}}'>League Home</a>
+
+<div>
+	Draft Style: 
+	<select ng-model='draftstyle' required>
+		<option value='snake'>Snake</option>
+		<option value='linear'>Linear</option>
+	</select>
+</div>
+
+<div>
+	<h4>Draft Order</h4>
+	<div ng-repeat='team in teams'>
+		{{team.name}}: <input ng-model='team.draftorder' type='number' min='1' max='{{leaguesettings.nteams}}'></input>
+	</div>
+</div>
+
+<button ng-disabled='draft_started' ng-click='draft_started=true; run_draft()'>Start Draft</button>
+
+
+Search: <input type='text' ng-model='filters.name'></input>
+Position: <select ng-model='filters.pos'>
+<option value=''>all</option>
+<option value='QB'>QB</option>
+<option value='RB'>RB</option>
+<option value='WR'>WR</option>
+<option value='TE'>TE</option>
+<option value='K'>K</option>
+<option value='DEF'>DEF</option>
+</select>
+
+<table>
+	<thead>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "name"; sortReverse = !sortReverse;'>Name</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "pos"; sortReverse = !sortReverse;'>Position</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "pid"; sortReverse = !sortReverse;'>Player ID</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "start_year"; sortReverse = !sortReverse;'>First Year</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "last_year"; sortReverse = !sortReverse;'>Last Year</a>
+		</th>
+		<th>
+			<a href='' id='sortableheader' ng-click='sortType = "gmteam"; sortReverse = !sortReverse;'>Team</a>
+		</th>
+		<th>
+			Sign Button
+		</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat='player in players | orderBy:sortType:sortReverse | filter:filters' id='playerrow'>
+			<td id='playernametd'>
+				<a href='#/leagues/{{leagueid}}/players/{{player.pid}}'>{{player.name}}</a>
+			</td>
+			<td id='playerpostd'>
+				{{player.pos}}
+			</td>
+			<td id='playeridtd'>
+				<a href='{{player.pfrlink}}'>{{player.pid}}</a>
+			</td>
+			<td id='playerfirstyrtd'>
+				{{player.start_year}}
+			</td>
+			<td id='playerlastyrtd'>
+				{{player.last_year}}
+			</td>
+			<td id='playergmteamtd'>
+				{{player.gmteam}}
+			</td>
+			<td>
+				<button ng-click='sign_player(authData.uid, player.pid, 0, 5, {"2015": 20, "2016": 20})'>Sign {{player.pid}}</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
