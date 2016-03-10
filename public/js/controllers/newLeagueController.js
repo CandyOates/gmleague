@@ -10,6 +10,7 @@ app.controller('newLeagueController', ['$scope', '$window',
 		}
 
 		$scope.lgname = '';
+		$scope.teamname = '';
 		$scope.nteams = 10;
 
 		$scope.submit = function () {
@@ -20,7 +21,7 @@ app.controller('newLeagueController', ['$scope', '$window',
 			var teams = {};
 
 			teams[$scope.authData.uid] = {
-				name : '',
+				name : $scope.teamname,
 			};
 
 			var league = {

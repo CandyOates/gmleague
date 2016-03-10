@@ -1,20 +1,44 @@
 <h1>Home Page</h1>
 <div class='not_auth' ng-show='!authorized'>
-	<form name='login'>
-		<label>Email:</label><input type='email' name='email' ng-model='email' required/>
-		<label>Password:</label><input type='password' name='password' ng-model='password' required/>
-	</form>
+	<div id='signindiv'>
+		<form name='login'>
+			<label>Email:</label><input type='email' name='email' ng-model='email' required/>
+			<label>Password:</label><input type='password' name='password' ng-model='password' required/>
+		</form>
+		<button ng-click='signin()'>Sign In</button>
+	</div>
 
-	<button ng-click='signin()'>Sign In</button>
-	<button ng-click='register()'>Register</button>
+	<div id='registerdiv'>
+		<form name='registerForm'>
+			<label>Username:</label><input type='text' name='username' ng-model='username' ng-pattern='username_pattern' required/> <span class='invalid_input' ng-show='!registerForm.username.$valid'>invalid</span> length 6+, a-z A-Z 0-9 _
+			<label>Email:</label><input type='email' name='reg_email' ng-model='reg_email' required/> <span class='invalid_input' ng-show='!registerForm.reg_email.$valid'>invalid</span>
+			<label>Password:</label><input type='password' name='reg_password' ng-model='reg_password' ng-pattern='password_pattern' required/> <span class='invalid_input' ng-show='!registerForm.reg_password.$valid'>invalid</span> length 6+, a-z A-Z 0-9 +-./_
+			<label>Confirm Password:</label><input type='password' name='reg_password2' ng-model='reg_password2' required/>
+		</form>
+		<button ng-click='register()' ng-disabled='!(registerForm.username.$valid && registerForm.reg_email.$valid && registerForm.reg_password.$valid && registerForm.reg_password2.$valid)'>Register</button>
+	</div>
 </div>
 
 <div class='is_auth' ng-show='authorized'>
 	{{authData.password.email}}
+	<a href='' ng-click='signout()'>Sign Out</a>
 	<a href='#/newleague' id='newleaguelink'>Create League</a>
+
+	<h4>Your Leagues</h4>
 	<ul id='leaguelist'>
 		<li class='leaguelinks' ng-repeat='league in leagues'>
 			<a class='leaguelink' href='/#/league/{{league.uid}}'>{{league.settings.name}}</a>
 		</li>
 	</ul>
+
+	<h4>League Invitations</h4>
+	<ol id='lginvites'>
+		<li class='lginvite' ng-repeat='invite in invites'>
+			<span id='lginvitename'>{{invite.lgname}}</span>
+			<span id='lginvitesender'>{{invite.sender}}</span>
+			<div id='lginvitemessage'>{{invite.message}}</div>
+			<button ng-click='accept_league_invite(invite)'>Join League</button>
+			<button ng-click='reject_league_invite(invite)'>Decline Invitation</button>
+		</li>
+	</ol>	
 </div>

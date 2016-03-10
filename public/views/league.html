@@ -8,3 +8,14 @@
 		<a href='#/league/{{leagueid}}/team/{{team.userid}}' id='leagueteamlink'>{{team.name}}</a>
 	</li>
 </ol>
+
+<div id='invite2league' ng-show='teams.length < leaguesettings.nteams'>
+	<h4>Invite GMs</h4>
+	<form name='invForm'>
+		User's Email: <input type='email' name='email' ng-model='email'></input>
+
+		Message: <textarea type='text' name='message' ng-model='message'></textarea>
+
+		<button ng-click='sendinvite()'>Send Invite</button>
+	</form>
+</div>
